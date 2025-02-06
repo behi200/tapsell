@@ -3,27 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تست تبلیغات تپسل</title>
+    <title>تبلیغات تپسل</title>
+    <!-- بارگذاری اسکریپت تپسل -->
     <script src="https://cdn.tapsell.ir/tapsell.min.js"></script>
 </head>
 <body>
     <h1 style="text-align: center; margin-top: 50px;">🚀 تبلیغات تپسل</h1>
+    
+    <!-- جایگاه نمایش تبلیغ -->
     <div id="ad-container" style="width: 100%; height: 100px;"></div>
 
     <script>
-        // اطلاعات مربوط به اپلیکیشن و زون تبلیغاتی
-        const appID = "matnocpqcpjtclepnhkjgpdibqjifofbjoajsdthbdrbdignrfjmoleeaoiisresbjpmdl";  // جایگزین با App ID واقعی
-        const zoneID = "67a52e31fbe5603f108b3ad2";  // جایگزین با Zone ID واقعی
+        window.onload = function () {
+            const appID = "matnocpqcpjtclepnhkjgpdibqjifofbjoajsdthbdrbdignrfjmoleeaoiisresbjpmdl";  // جایگزین با App ID واقعی
+            const zoneID = "67a52e31fbe5603f108b3ad2";  // جایگزین با Zone ID واقعی
 
-        // بررسی بارگذاری تبلیغ
-        Tapsell.initialize(appID);
-        Tapsell.showBannerAd(zoneID, "ad-container", {
-            width: "100%",
-            height: "100px",
-            onOpen: function () { console.log("Ad Opened"); },
-            onClose: function () { console.log("Ad Closed"); },
-            onError: function (err) { console.log("Ad Error: " + err); }
-        });
+            // بررسی بارگذاری تبلیغ
+            Tapsell.initialize(appID); // Initialize Tapsell SDK
+
+            // نمایش تبلیغ بنری
+            Tapsell.showBannerAd(zoneID, "ad-container", {
+                width: "100%",
+                height: "100px",  // ارتفاع تبلیغ
+                onOpen: function () { 
+                    console.log("تبلیغ باز شد");
+                },
+                onClose: function () { 
+                    console.log("تبلیغ بسته شد");
+                },
+                onError: function (err) { 
+                    console.log("خطا در بارگذاری تبلیغ: " + err);
+                }
+            });
+        }
     </script>
 </body>
 </html>
