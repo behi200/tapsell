@@ -11,31 +11,39 @@
     <h1 style="text-align: center; margin-top: 50px;">🚀 تبلیغات تپسل</h1>
     
     <!-- جایگاه نمایش تبلیغ -->
-    <div id="ad-container" style="width: 100%; height: 100px;"></div>
+    <div id="ad-container" style="width: 100%; height: 100px; border: 1px solid #ccc;"></div>
 
     <script>
-        window.onload = function () {
+        // بارگذاری SDK و بررسی اگر موجود است
+        function loadAd() {
             const appID = "matnocpqcpjtclepnhkjgpdibqjifofbjoajsdthbdrbdignrfjmoleeaoiisresbjpmdl";  // جایگزین با App ID واقعی
             const zoneID = "67a52e31fbe5603f108b3ad2";  // جایگزین با Zone ID واقعی
 
-            // بررسی بارگذاری تبلیغ
-            Tapsell.initialize(appID); // Initialize Tapsell SDK
+            if (window.Tapsell) {
+                Tapsell.initialize(appID);  // Initialize SDK
 
-            // نمایش تبلیغ بنری
-            Tapsell.showBannerAd(zoneID, "ad-container", {
-                width: "100%",
-                height: "100px",  // ارتفاع تبلیغ
-                onOpen: function () { 
-                    console.log("تبلیغ باز شد");
-                },
-                onClose: function () { 
-                    console.log("تبلیغ بسته شد");
-                },
-                onError: function (err) { 
-                    console.log("خطا در بارگذاری تبلیغ: " + err);
-                }
-            });
+                Tapsell.showBannerAd(zoneID, "ad-container", {
+                    width: "100%",
+                    height: "100px",
+                    onOpen: function() {
+                        console.log("تبلیغ باز شد");
+                    },
+                    onClose: function() {
+                        console.log("تبلیغ بسته شد");
+                    },
+                    onError: function(err) {
+                        console.error("خطا در بارگذاری تبلیغ:", err);
+                    }
+                });
+            } else {
+                console.error("SDK تپسل بارگذاری نشد.");
+            }
         }
+
+        // وقتی صفحه به طور کامل بارگذاری شد
+        window.onload = function() {
+            loadAd();
+        };
     </script>
 </body>
 </html>
