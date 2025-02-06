@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://static.tapsell.ir/sdk/web/tapsell-web-sdk-latest.js"></script>
+    <style>
+        #ad-banner {
+            width: 100%;
+            height: 100px; /* ارتفاع بنر را می‌توانید تغییر دهید */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <title>تبلیغات تپسل</title>
+</head>
+<body>
+    <div id="ad-banner"></div>
+    <script>
+        Tapsell.initialize("matnocpqcpjtclepnhkjgpdibqjifofbjoajsdthbdrbdignrfjmoleeaoiisresbjpmdl");
+        Tapsell.showBannerAd("67a52e31fbe5603f108b3ad2", "ad-banner", {
+            width: "100%",
+            height: "100px",
+            onOpen: function () { console.log("Ad Opened"); },
+            onClose: function () { console.log("Ad Closed"); },
+            onError: function (err) { console.log("Ad Error: " + err); }
+        });
+    </script>
+</body>
+</html>
